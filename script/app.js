@@ -2,19 +2,19 @@
 
 
 function computerPlay() {
-    let playOptions = ["Rock", "Paper", "Scissors"];
-
-    let playIndex = Math.floor(Math.random() * 3);
+    let playOptions = ["Rock", "Paper", "Scissors"],
+        playIndex = Math.floor(Math.random() * 3);
 
     return playOptions[playIndex];
 };
 
 
 function playRound(playerSelection, computerSelection) {
-    const errMessage = `You have input a play that is not recognized. Please try again with one of the following: \n
-    1. Rock\n
-    2. Paper\n
+    const errMessage = `You have input a play that is not recognized. Please try again with one of the following:
+    1. Rock
+    2. Paper
     3. Scissors`;
+
     let playerChoice,
         computerChoice = computerSelection.toLowerCase(),
         outcome = undefined;
@@ -100,7 +100,7 @@ function game() {
 
     if (score.Player > score.Computer) {
         winner = playerName;
-    }
+    };
 
     console.log(`Game over! Overall winner was ${winner}. Final score is ${score.Player} for ${playerName} and ${score.Computer} for Computer`)
 };

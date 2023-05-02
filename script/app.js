@@ -10,7 +10,7 @@ function computerPlay() {
 
 
 function playRound(playerSelection, computerSelection) {
-    const errMessage = `You have input a play that is not recognized. Please try again with one of the following:
+    const errMessage = `You have typed word or number that is not recognized. Please try again with one of the following:
     * Rock
     * Paper
     * Scissors`;
@@ -66,17 +66,17 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
 
-    console.log(`Welcome to the game of Rock-Paper-Scissors. To play, type either Rock, Paper, or Scissors and you will play 5 games against THE COMPUTER.`);
+    console.log(`Welcome to the game of Rock-Paper-Scissors. To play, type either: Rock, Paper, or Scissors. You will play 5 rounds against THE COMPUTER. Good luck!!`);
 
     let playerName = prompt("What is your name?"),
         score = {
             Player: 0,
             Computer: 0
         },
-        playerSelection, winner = "Computer";
+        playerSelection, winner = "Computer", quitMsg = "Game terminated, thanks for playing!";
 
     if (playerName === null) {
-        return console.log("Game terminated, thanks for playing");
+        return console.log(quitMsg);
     }
 
     console.log(`Let the game BEGIN! ${playerName} vs THE COMPUTER`);
@@ -86,7 +86,7 @@ function game() {
         playerSelection = prompt(`${playerName}, what is your move?`);
 
         if (playerSelection === null) {
-            return console.log("Game terminated, thanks for playing");
+            return console.log(quitMsg);
         }
 
         console.log("Rock..Paper..Scissors....", playerSelection);

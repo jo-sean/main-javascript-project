@@ -66,17 +66,26 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
 
-    let playerName = prompt("What is your name?") || "Human Player",
+    let playerName = prompt("What is your name?"),
         score = {
             Player: 0,
             Computer: 0
         },
         playerSelection, winner = "Computer";
 
+    if (playerName === null) {
+        return console.log("Game terminated, thanks for playing");
+    }
+
     console.log(`Welcome to the game of Rock-Paper-Scissors ${playerName}. To play, type either Rock, Paper, or Scissors and you will play 5 games against the computer.`);
 
     for (let i = 0; i < 5;) {
         playerSelection = prompt(`${playerName}, what is your move?`);
+
+        if (playerSelection === null) {
+            return console.log("Game terminated, thanks for playing");
+        }
+
         console.log("Rock..Paper..Scissors....", playerSelection);
 
         outcome = playRound(playerSelection, computerPlay());

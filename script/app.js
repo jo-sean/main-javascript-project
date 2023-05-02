@@ -11,9 +11,9 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
     const errMessage = `You have input a play that is not recognized. Please try again with one of the following:
-    1. Rock
-    2. Paper
-    3. Scissors`;
+    * Rock
+    * Paper
+    * Scissors`;
 
     let playerChoice,
         computerChoice = computerSelection.toLowerCase(),
@@ -66,6 +66,8 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
 
+    console.log(`Welcome to the game of Rock-Paper-Scissors. To play, type either Rock, Paper, or Scissors and you will play 5 games against THE COMPUTER.`);
+
     let playerName = prompt("What is your name?"),
         score = {
             Player: 0,
@@ -77,9 +79,10 @@ function game() {
         return console.log("Game terminated, thanks for playing");
     }
 
-    console.log(`Welcome to the game of Rock-Paper-Scissors ${playerName}. To play, type either Rock, Paper, or Scissors and you will play 5 games against the computer.`);
+    console.log(`Let the game BEGIN! ${playerName} vs THE COMPUTER`);
 
-    for (let i = 0; i < 5;) {
+
+    while (score.Player + score.Computer !== 5) {
         playerSelection = prompt(`${playerName}, what is your move?`);
 
         if (playerSelection === null) {
@@ -96,10 +99,8 @@ function game() {
             continue;
         } else if (outcome.includes("win")) {
             score.Player = score.Player + 1;
-            i++;
         } else {
             score.Computer = score.Computer + 1;
-            i++;
         };
 
         console.log(`Current score: 
@@ -111,7 +112,9 @@ function game() {
         winner = playerName;
     };
 
-    console.log(`Game over! Overall winner was ${winner}. Final score is ${score.Player} for ${playerName} and ${score.Computer} for Computer`)
+    console.log(`Game over! Overall winner was ${winner}. 
+    \Final score is ${score.Player} for ${playerName} and ${score.Computer} for Computer. 
+    \Thanks for playing, come play again!`)
 };
 
 game();

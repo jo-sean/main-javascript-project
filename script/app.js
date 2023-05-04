@@ -3,14 +3,16 @@
 const WIN = "win", LOSE = "lose", ROCK = "rock", PAPER = "paper", SCISSORS = "scissors";
 
 
+// Func that randomly selects Computer's choice in the game rock, paper, scissors 
 function computerPlay() {
-    let playOptions = ["Rock", "Paper", "Scissors"],
+    let playOptions = [ROCK, PAPER, SCISSORS],
         playIndex = Math.floor(Math.random() * playOptions.length);
 
     return playOptions[playIndex];
 };
 
 
+// Func plays one round of rock, paper, scissors comparing the choice from human player vs computer's randomly seclected choice
 function playRound(playerSelection, computerSelection) {
     const errMessage = `You have typed word or number that is not recognized. Please try again with one of the following:
     * Rock
@@ -30,22 +32,22 @@ function playRound(playerSelection, computerSelection) {
     };
 
     switch (playerChoice) {
-        case "rock":
-            if (computerChoice === "scissors") {
+        case ROCK:
+            if (computerChoice === SCISSORS) {
                 outcome = WIN;
             } else {
                 outcome = LOSE;
             }
             break;
-        case "paper":
-            if (computerChoice === "rock") {
+        case PAPER:
+            if (computerChoice === ROCK) {
                 outcome = WIN;
             } else {
                 outcome = LOSE;
             }
             break;
-        case "scissors":
-            if (computerChoice === "paper") {
+        case SCISSORS:
+            if (computerChoice === PAPER) {
                 outcome = WIN;
             } else {
                 outcome = LOSE;
@@ -75,7 +77,9 @@ function game() {
             Player: 0,
             Computer: 0
         },
-        playerSelection, winner = "Computer", quitMsg = "Game terminated, thanks for playing!";
+        playerSelection,
+        winner = "Computer",
+        quitMsg = "Game terminated, thanks for playing!";
 
     if (playerName === null) {
         return console.log(quitMsg);

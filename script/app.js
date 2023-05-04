@@ -72,9 +72,9 @@ function playRound(playerSelection, computerSelection) {
 // Plays until there have been 5 valid rounds; ties, invalid inputs, etc do not count
 function game() {
 
-    console.log(`Welcome to the game of Rock-Paper-Scissors. To play, type either: Rock, Paper, or Scissors. You will play 5 rounds against THE COMPUTER. Good luck!!`);
+    alert(`Welcome to the game of Rock-Paper-Scissors. To play, type either: Rock, Paper, or Scissors. You will play 5 rounds against THE COMPUTER. Good luck!!`);
 
-    let playerName = prompt("What is your name?") || "Human Player",
+    let playerName = prompt("What is your name?") || "HUMAN PLAYER",
         score = {
             Player: 0,
             Computer: 0
@@ -87,7 +87,9 @@ function game() {
         return console.log(quitMsg);
     }
 
-    console.log(`Let the game BEGIN! ${playerName} vs THE COMPUTER`);
+    console.log(`${playerName} vs THE COMPUTER
+    Let the game...BEGIN! `
+    );
 
     while (score.Player + score.Computer !== 5) {
         playerSelection = prompt(`Round: ${(score.Player + score.Computer) + 1} - ${playerName}, what is your move?`);

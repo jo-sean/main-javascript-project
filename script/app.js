@@ -1,14 +1,12 @@
 // Author: Sean Perez
 
-const WIN = "win", LOSE = "lose", ROCK = "rock", PAPER = "paper", SCISSORS = "scissors";
+const WIN = "win", LOSE = "lose", OPTIONS = ["rock", "paper", "scissors"];
 
 
 // Func that randomly selects Computer's choice in the game rock, paper, scissors 
 function computerPlay() {
-    let playOptions = [ROCK, PAPER, SCISSORS],
-        playIndex = Math.floor(Math.random() * playOptions.length);
-
-    return playOptions[playIndex];
+    playIndex = Math.floor(Math.random() * playOptions.length);
+    return OPTIONS[playIndex];
 };
 
 
@@ -34,22 +32,22 @@ function playRound(playerSelection, computerSelection) {
     // Compares player's input vs randomly seclected choice for the computer and records the outcome of win or lose. 
     // If tied or invalid, returns false
     switch (playerChoice) {
-        case ROCK:
-            if (computerChoice === SCISSORS) {
+        case OPTIONS[0]:
+            if (computerChoice === OPTIONS[2]) {
                 outcome = WIN;
             } else {
                 outcome = LOSE;
             }
             break;
-        case PAPER:
-            if (computerChoice === ROCK) {
+        case OPTIONS[1]:
+            if (computerChoice === OPTIONS[0]) {
                 outcome = WIN;
             } else {
                 outcome = LOSE;
             }
             break;
-        case SCISSORS:
-            if (computerChoice === PAPER) {
+        case OPTIONS[2]:
+            if (computerChoice === OPTIONS[1]) {
                 outcome = WIN;
             } else {
                 outcome = LOSE;

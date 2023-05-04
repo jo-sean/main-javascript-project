@@ -5,7 +5,7 @@ const WIN = "win", LOSE = "lose", OPTIONS = ["rock", "paper", "scissors"];
 
 // Func that randomly selects Computer's choice in the game rock, paper, scissors 
 function computerPlay() {
-    playIndex = Math.floor(Math.random() * playOptions.length);
+    playIndex = Math.floor(Math.random() * OPTIONS.length);
     return OPTIONS[playIndex];
 };
 

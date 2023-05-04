@@ -1,9 +1,11 @@
 // Author: Sean Perez
 
+const WIN = "win", LOSE = "lose", ROCK = "rock", PAPER = "paper", SCISSORS = "scissors";
+
 
 function computerPlay() {
     let playOptions = ["Rock", "Paper", "Scissors"],
-        playIndex = Math.floor(Math.random() * 3);
+        playIndex = Math.floor(Math.random() * playOptions.length);
 
     return playOptions[playIndex];
 };
@@ -30,23 +32,23 @@ function playRound(playerSelection, computerSelection) {
     switch (playerChoice) {
         case "rock":
             if (computerChoice === "scissors") {
-                outcome = "win";
+                outcome = WIN;
             } else {
-                outcome = "lose";
+                outcome = LOSE;
             }
             break;
         case "paper":
             if (computerChoice === "rock") {
-                outcome = "win";
+                outcome = WIN;
             } else {
-                outcome = "lose";
+                outcome = LOSE;
             }
             break;
         case "scissors":
             if (computerChoice === "paper") {
-                outcome = "win";
+                outcome = WIN;
             } else {
-                outcome = "lose";
+                outcome = LOSE;
             }
             break;
         default:
@@ -54,9 +56,9 @@ function playRound(playerSelection, computerSelection) {
     };
 
     switch (outcome) {
-        case "win":
+        case WIN:
             return `You ${outcome}, ${playerChoice} beats ${computerChoice}`;
-        case "lose":
+        case LOSE:
             return `You ${outcome}, ${computerChoice} beats ${playerChoice}`;
         default:
             return errMessage;
@@ -97,7 +99,7 @@ function game() {
 
         if (outcome.includes("try again")) {
             continue;
-        } else if (outcome.includes("win")) {
+        } else if (outcome.includes(WIN)) {
             score.Player = score.Player + 1;
         } else {
             score.Computer = score.Computer + 1;

@@ -31,6 +31,8 @@ function playRound(playerSelection, computerSelection) {
         return "It is a tied, try again!";
     };
 
+    // Compares player's input vs randomly seclected choice for the computer and records the outcome of win or lose. 
+    // If tied or invalid, returns false
     switch (playerChoice) {
         case ROCK:
             if (computerChoice === SCISSORS) {
@@ -67,12 +69,12 @@ function playRound(playerSelection, computerSelection) {
     };
 };
 
-
+// Plays until there have been 5 valid rounds; ties, invalid inputs, etc do not count
 function game() {
 
     console.log(`Welcome to the game of Rock-Paper-Scissors. To play, type either: Rock, Paper, or Scissors. You will play 5 rounds against THE COMPUTER. Good luck!!`);
 
-    let playerName = prompt("What is your name?"),
+    let playerName = prompt("What is your name?") || "Human Player",
         score = {
             Player: 0,
             Computer: 0
@@ -87,20 +89,18 @@ function game() {
 
     console.log(`Let the game BEGIN! ${playerName} vs THE COMPUTER`);
 
-
     while (score.Player + score.Computer !== 5) {
-        playerSelection = prompt(`${playerName}, what is your move?`);
+        playerSelection = prompt(`Round: ${(score.Player + score.Computer) + 1} - ${playerName}, what is your move?`);
 
         if (playerSelection === null) {
             return console.log(quitMsg);
         }
 
         console.log("Rock..Paper..Scissors....", playerSelection);
-
         outcome = playRound(playerSelection, computerPlay());
-
         console.log(outcome);
 
+        // Records valid wins or loses; if invalid, re-starts loop
         if (outcome.includes("try again")) {
             continue;
         } else if (outcome.includes(WIN)) {

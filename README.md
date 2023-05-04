@@ -1,6 +1,4 @@
 # main-javascript-project
-rock-paper-scissors on console
-
 
 Simple game of Rock | Paper | Scissors played on the developer console. Created using javascript. 
 

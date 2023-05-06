@@ -126,8 +126,14 @@ function game() {
         quitMsg = "Game terminated, thanks for playing!";
 
     if (playerName === null) {
-        return console.log(quitMsg);
-    }
+        let response = prompt('Are you sure you want to quit?').trim().toUpperCase();
+        switch (response) {
+            case Y:
+                return console.log(quitMsg);
+            case N:
+                break;
+        };
+    };
 
     console.log(`${playerName} vs THE COMPUTER
     Let the game...BEGIN! `
@@ -137,17 +143,24 @@ function game() {
         playerSelection = playerChoice(playerName, score);
 
         if (playerSelection === null) {
-            return console.log(quitMsg);
-        }
+            if (playerName === null) {
+                let response = prompt('Are you sure you want to quit?').trim().toUpperCase();
+                switch (response) {
+                    case Y:
+                        return console.log(quitMsg);
+                    case N:
+                        break;
+                };
+            };
 
-        console.log("Rock..Paper..Scissors....", playerSelection);
-        outcome = playRound(playerSelection, computerPlay());
-        console.log(outcome);
-        calcWinner(score, outcome);
-        currentScore(playerName, score);
+            console.log("Rock..Paper..Scissors....", playerSelection);
+            outcome = playRound(playerSelection, computerPlay());
+            console.log(outcome);
+            calcWinner(score, outcome);
+            currentScore(playerName, score);
+        };
+
+        showWinner(score, playerName);
     };
 
-    showWinner(score, playerName);
-};
-
-game();
+    game();

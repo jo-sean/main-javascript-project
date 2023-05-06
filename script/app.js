@@ -61,20 +61,23 @@ function playRound(playerChoice, computerChoice) {
     };
 };
 
+
 // Get name of player
 function getName() {
     let playerName = prompt("What is your name?") || "HUMAN PLAYER";
-    return playerName
+    return playerName;
 };
 
+
 // Gets player choice
-function playerChoice() {
+function playerChoice(playerName, score) {
     let playerSelection = prompt(`Round: ${(score.Player + score.Computer) + 1} - ${playerName}, what is your move? (Options are rock, paper or scissors)`);
     if (typeof playerSelection === "string") {
-        playerChoice = playerSelection.trim().toLowerCase();
+        playerSelection = playerSelection.trim().toLowerCase();
     };
     return playerSelection;
 };
+
 
 // Calculate winner or loser - Records valid wins or loses; if invalid, re-starts loop
 function calcWinner(score, outcome) {
@@ -89,8 +92,10 @@ function calcWinner(score, outcome) {
     };
 };
 
+
 // Find overall winner; print out results
 function showWinner(score, playerName) {
+    let winner = "Computer";
     if (score.Player > score.Computer) {
         winner = playerName;
     };
@@ -101,19 +106,23 @@ function showWinner(score, playerName) {
 };
 
 
+function currentScore(playerName, score) {
+    console.log(`Current score: 
+        ${playerName}: ${score.Player}
+        Computer: ${score.Computer}`);
+};
+
 
 // Plays until there have been 5 valid rounds; ties, invalid inputs, etc do not count
 function game() {
 
     alert(`Welcome to the game of Rock-Paper-Scissors. To play, type either: Rock, Paper, or Scissors. You will play 5 rounds against THE COMPUTER. Good luck!!`);
-
     let playerName = getName(),
         score = {
             Player: 0,
             Computer: 0
         },
         playerSelection,
-        winner = "Computer",
         quitMsg = "Game terminated, thanks for playing!";
 
     if (playerName === null) {
@@ -125,7 +134,7 @@ function game() {
     );
 
     while (score.Player + score.Computer !== 5) {
-        playerSelection = playerChoice();
+        playerSelection = playerChoice(playerName, score);
 
         if (playerSelection === null) {
             return console.log(quitMsg);
@@ -134,13 +143,8 @@ function game() {
         console.log("Rock..Paper..Scissors....", playerSelection);
         outcome = playRound(playerSelection, computerPlay());
         console.log(outcome);
-
-        // Records valid wins or loses; if invalid, re-starts loop
         calcWinner(score, outcome);
-
-        console.log(`Current score: 
-        ${playerName}: ${score.Player}
-        Computer: ${score.Computer}`);
+        currentScore(playerName, score);
     };
 
     showWinner(score, playerName);

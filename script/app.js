@@ -143,24 +143,23 @@ function game() {
         playerSelection = playerChoice(playerName, score);
 
         if (playerSelection === null) {
-            if (playerName === null) {
-                let response = prompt('Are you sure you want to quit?').trim().toUpperCase();
-                switch (response) {
-                    case Y:
-                        return console.log(quitMsg);
-                    case N:
-                        break;
-                };
+            let response = prompt('Are you sure you want to quit?').trim().toUpperCase();
+            switch (response) {
+                case Y:
+                    return console.log(quitMsg);
+                case N:
+                    break;
             };
-
-            console.log("Rock..Paper..Scissors....", playerSelection);
-            outcome = playRound(playerSelection, computerPlay());
-            console.log(outcome);
-            calcWinner(score, outcome);
-            currentScore(playerName, score);
         };
 
-        showWinner(score, playerName);
+        console.log("Rock..Paper..Scissors....", playerSelection);
+        outcome = playRound(playerSelection, computerPlay());
+        console.log(outcome);
+        calcWinner(score, outcome);
+        currentScore(playerName, score);
     };
 
-    game();
+    showWinner(score, playerName);
+};
+
+game();

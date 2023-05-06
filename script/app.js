@@ -68,12 +68,19 @@ function getName() {
     return playerName;
 };
 
+// Remove spaces in string and change to lower case
+function removeSpaces(stringContent) {
+    if (typeof stringContent === "string") {
+        return stringContent.trim().toLowerCase();
+    };
+}
+
 
 // Gets player choice
 function playerChoice(playerName, score) {
     let playerSelection = prompt(`Round: ${(score.Player + score.Computer) + 1} - ${playerName}, what is your move? (Options are rock, paper or scissors)`);
     if (typeof playerSelection === "string") {
-        playerSelection = playerSelection.trim().toLowerCase();
+        playerSelection = removeSpaces(playerSelection);
     };
     return playerSelection;
 };
@@ -125,16 +132,6 @@ function game() {
         playerSelection,
         quitMsg = "Game terminated, thanks for playing!";
 
-    if (playerName === null) {
-        let response = prompt('Are you sure you want to quit? Type "Y" if yes or "N" if no').trim().toUpperCase();
-        switch (response) {
-            case "Y":
-                return console.log(quitMsg);
-            case "N":
-                break;
-        };
-    };
-
     console.log(`${playerName} vs THE COMPUTER
     Let the game...BEGIN! `
     );
@@ -143,11 +140,12 @@ function game() {
         playerSelection = playerChoice(playerName, score);
 
         if (playerSelection === null) {
-            let response = prompt('Are you sure you want to quit? Type "Y" if yes or "N" if no').trim().toUpperCase();
+            let response = prompt('Are you sure you want to quit? Type "y" if yes or "n" if no') || "n";
+            response = removeSpaces(response);
             switch (response) {
-                case "Y":
+                case "y":
                     return console.log(quitMsg);
-                case "N":
+                default:
                     continue;
             };
         };

@@ -126,11 +126,11 @@ function game() {
         quitMsg = "Game terminated, thanks for playing!";
 
     if (playerName === null) {
-        let response = prompt('Are you sure you want to quit?').trim().toUpperCase();
+        let response = prompt('Are you sure you want to quit? Type "Y" if yes or "N" if no').trim().toUpperCase();
         switch (response) {
-            case Y:
+            case "Y":
                 return console.log(quitMsg);
-            case N:
+            case "N":
                 break;
         };
     };
@@ -143,12 +143,12 @@ function game() {
         playerSelection = playerChoice(playerName, score);
 
         if (playerSelection === null) {
-            let response = prompt('Are you sure you want to quit?').trim().toUpperCase();
+            let response = prompt('Are you sure you want to quit? Type "Y" if yes or "N" if no').trim().toUpperCase();
             switch (response) {
-                case Y:
+                case "Y":
                     return console.log(quitMsg);
-                case N:
-                    break;
+                case "N":
+                    continue;
             };
         };
 

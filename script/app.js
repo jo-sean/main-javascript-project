@@ -22,7 +22,7 @@ function playRound(playerSelection, computerSelection) {
         outcome = undefined;
 
     if (typeof playerSelection === "string") {
-        playerChoice = playerSelection.toLowerCase();
+        playerChoice = playerSelection.trim().toLowerCase();
     };
 
     if (playerChoice === computerChoice) {

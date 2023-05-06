@@ -11,19 +11,13 @@ function computerPlay() {
 
 
 // Func plays one round of rock, paper, scissors comparing the choice from human player vs computer's randomly seclected choice
-function playRound(playerSelection, computerSelection) {
+function playRound(playerChoice, computerChoice) {
     const errMessage = `You have typed word or number that is not recognized. Please try again with one of the following:
     * Rock
     * Paper
     * Scissors`;
 
-    let playerChoice,
-        computerChoice = computerSelection.toLowerCase(),
-        outcome = undefined;
-
-    if (typeof playerSelection === "string") {
-        playerChoice = playerSelection.trim().toLowerCase();
-    };
+    let outcome = undefined;
 
     if (playerChoice === computerChoice) {
         return "It is a tied, try again!";
@@ -67,12 +61,53 @@ function playRound(playerSelection, computerSelection) {
     };
 };
 
+// Get name of player
+function getName() {
+    let playerName = prompt("What is your name?") || "HUMAN PLAYER";
+    return playerName
+};
+
+// Gets player choice
+function playerChoice() {
+    let playerSelection = prompt(`Round: ${(score.Player + score.Computer) + 1} - ${playerName}, what is your move? (Options are rock, paper or scissors)`);
+    if (typeof playerSelection === "string") {
+        playerChoice = playerSelection.trim().toLowerCase();
+    };
+    return playerSelection;
+};
+
+// Calculate winner or loser - Records valid wins or loses; if invalid, re-starts loop
+function calcWinner(score, outcome) {
+    if (outcome.includes("try again")) {
+        return;
+    } else if (outcome.includes(WIN)) {
+        score.Player = score.Player + 1;
+        return;
+    } else {
+        score.Computer = score.Computer + 1;
+        return;
+    };
+};
+
+// Find overall winner; print out results
+function showWinner(score, playerName) {
+    if (score.Player > score.Computer) {
+        winner = playerName;
+    };
+
+    console.log(`Game over! Overall winner was ${winner}. 
+    \Final score is ${score.Player} for ${playerName} and ${score.Computer} for Computer. 
+    \Thanks for playing, come play again!`);
+};
+
+
+
 // Plays until there have been 5 valid rounds; ties, invalid inputs, etc do not count
 function game() {
 
     alert(`Welcome to the game of Rock-Paper-Scissors. To play, type either: Rock, Paper, or Scissors. You will play 5 rounds against THE COMPUTER. Good luck!!`);
 
-    let playerName = prompt("What is your name?") || "HUMAN PLAYER",
+    let playerName = getName(),
         score = {
             Player: 0,
             Computer: 0
@@ -90,7 +125,7 @@ function game() {
     );
 
     while (score.Player + score.Computer !== 5) {
-        playerSelection = prompt(`Round: ${(score.Player + score.Computer) + 1} - ${playerName}, what is your move?`);
+        playerSelection = playerChoice();
 
         if (playerSelection === null) {
             return console.log(quitMsg);
@@ -101,26 +136,14 @@ function game() {
         console.log(outcome);
 
         // Records valid wins or loses; if invalid, re-starts loop
-        if (outcome.includes("try again")) {
-            continue;
-        } else if (outcome.includes(WIN)) {
-            score.Player = score.Player + 1;
-        } else {
-            score.Computer = score.Computer + 1;
-        };
+        calcWinner(score, outcome);
 
         console.log(`Current score: 
         ${playerName}: ${score.Player}
         Computer: ${score.Computer}`);
     };
 
-    if (score.Player > score.Computer) {
-        winner = playerName;
-    };
-
-    console.log(`Game over! Overall winner was ${winner}. 
-    \Final score is ${score.Player} for ${playerName} and ${score.Computer} for Computer. 
-    \Thanks for playing, come play again!`)
+    showWinner(score, playerName);
 };
 
 game();
